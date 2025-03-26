@@ -1,14 +1,15 @@
 import { useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import UploadFile from "../utils/onUpload";
 // Manually set the worker source
 pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
-const UploadResume = ({ onUpload }) => {
+const UploadResume = () => {
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [fileName, setFileName] = useState(null);
-    const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleFileChange = (event) => {
     const uploadedFile = event.target.files[0];
@@ -60,37 +61,49 @@ const UploadResume = ({ onUpload }) => {
   };
 
   return (
-    <label
-      htmlFor="resumeUpload"
-      className="mt-8 w-full max-w-sm mx-auto p-3 py-12 border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer flex flex-col items-center"
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={handleDrop}
-    >
-      <input
-        type="file"
-        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-        className="hidden"
-        id="resumeUpload"
-        onChange={handleFileChange}
-      />
-      {file ? (
-        <div className="flex flex-col items-center">
-          <img
-            src={previewURL}
-            alt="Preview"
-            className="max-w-[12rem] max-h-[36rem] object-cover border rounded px-1"
-          />
-          <p className="mt-2 text-sm font-semibold text-gray-700">{fileName}</p>
-          <p className="text-green-500 text-sm">Uploaded successfully</p>
-        </div>
-      ) : (
-        <>
-          <img src="/uploadImage.png" alt="Upload" className="w-16 h-16 mb-2" />
-          <span className="text-gray-500">Drag & Drop your resume here</span>
-          <span className="text-gray-400">or click to upload</span>
-        </>
-      )}
-    </label>
+    <div>
+      <label
+        htmlFor="resumeUpload"
+        className="mt-8 w-full max-w-sm mx-auto p-3 py-12 border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer flex flex-col items-center"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleDrop}
+      >
+        <input
+          type="file"
+          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          className="hidden"
+          id="resumeUpload"
+          onChange={handleFileChange}
+        />
+        {file ? (
+          <div className="flex flex-col items-center">
+            <img
+              src={previewURL}
+              alt="Preview"
+              className="max-w-[12rem] max-h-[36rem] object-cover border rounded px-1"
+            />
+            <p className="mt-2 text-sm font-semibold text-gray-700">
+              {fileName}
+            </p>
+            <p className="text-green-500 text-sm">Uploaded successfully</p>
+          </div>
+        ) : (
+          <>
+            <img
+              src="/uploadImage.png"
+              alt="Upload"
+              className="opacity-30 max-w-[12rem] max-h-[36rem] mb-2"
+            />
+            <span className="text-gray-500">Drag & Drop your resume here</span>
+            <span className="text-gray-400">or click to upload</span>
+          </>
+        )}
+      </label>
+
+      <div className="flex justify-center mt-6">
+        <button onClick={()=>UploadFile(file)} className="border p-2 rounded-sm hover:cursor-pointer hover:bg-gray-100 active:bg-gray-200">Find Jobs!</button>
+      </div>
+    </div>
   );
 };
 
