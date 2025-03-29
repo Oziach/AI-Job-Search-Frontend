@@ -1,21 +1,26 @@
 import axios from "axios";
 
-const UploadFile = async (file) => {
+const UploadFile = async (file, token) => {
   if (!file) {
     console.error("No file provided for upload.");
-    return;
+    throw({message: "No file provided for upload"});
   }
 
   const formData = new FormData();
   formData.append("resume", file);
 
+  
   try {
     const response = await axios.post("http://localhost:5000/upload", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { 
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}` 
+      },
     });
 
     console.log("Upload successful:", response.data);
-    return response.data; // Return response for further use
+
+    return response.data;
   } catch (error) {
     console.error("Error uploading file:", error);
     throw error;

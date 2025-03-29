@@ -10,7 +10,7 @@ const Header = () => {
 
       <div className="flex justify-center items-center gap-4 self-start">
         <div className="inline-block text-3xl">Resume Job Finder</div>
-        <div className="inline-block w-24 h-[1px] bg-black" />
+        <div className="inline-block sm:w-12 md:w-18 lg:w-24 h-[1px] bg-black" />
       </div>
 
       {token && 

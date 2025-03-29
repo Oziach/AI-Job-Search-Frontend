@@ -7,7 +7,7 @@ export const AllContext = createContext();
 const AllContextProvider = (props) => {
 
     const [token, setToken] = useState('');
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState(null);
     const navigate = useNavigate();
     
 
@@ -20,6 +20,7 @@ const AllContextProvider = (props) => {
     const value = {
          navigate,
         token, setToken,
+        jobs, setJobs,
     }
 
     return (
