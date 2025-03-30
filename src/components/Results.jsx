@@ -31,9 +31,6 @@ const Results = () => {
       {jobs && (
         <div className="flex flex-col items-center">
           <div className="flex justify-center items-center mt-4 gap-2 mb-4">
-            <div className="h-[1px] w-24 bg-yellow-500 mt-1" />
-            <p>Results</p>
-            <div className="h-[1px] w-24 bg-yellow-500 mt-1" />
           </div>
           {console.log((jobs))}
           {Array.isArray(jobs) &&

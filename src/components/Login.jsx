@@ -27,7 +27,7 @@ const Login = () => {
         
         if(response.data.success){
           setToken(response.data.token);
-          localStorage.setItem('restumeJobSearchToken', response.data.token);
+          localStorage.setItem('resumeJobSearchToken', response.data.token);
         }else{
           toast.error(response.data.message);
         }

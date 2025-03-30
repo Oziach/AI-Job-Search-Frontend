@@ -27,7 +27,6 @@ const ResultBar = ({ job }) => {
     } else {
       // Collapse the dropdown to 0 height
       dropdownRef.current.style.height = "0px";
-      console.log("collapsed");
     }
   };
 

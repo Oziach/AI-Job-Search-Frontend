@@ -1,4 +1,5 @@
 import axios from "axios";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const UploadFile = async (file, token) => {
   if (!file) {
@@ -11,7 +12,7 @@ const UploadFile = async (file, token) => {
 
   
   try {
-    const response = await axios.post("http://localhost:5000/upload", formData, {
+    const response = await axios.post(`${backendUrl}/resume/upload`, formData, {
       headers: { 
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}` 

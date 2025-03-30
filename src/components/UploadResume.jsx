@@ -18,6 +18,7 @@ const UploadResume = () => {
   const [previewURL, setPreviewURL] = useState(null);
   const [fileName, setFileName] = useState(null);
   const {token, jobs, setJobs, navigate} = useContext(AllContext);
+  const [jobState, setJobState] = useState("");
   
   useEffect(() => {
     // Redirect to login if token is null
@@ -28,6 +29,7 @@ const UploadResume = () => {
 
   const OnUpload = async () => {
     try{
+      setJobState("Finding mathcing jobs...")
       const fileUploadedResponse = await UploadFile(file, token);
       if(!fileUploadedResponse.success){
         toast.error(fileUploadedResponse.message);
@@ -42,6 +44,7 @@ const UploadResume = () => {
       console.log(error);
       toast.error(error.message);
     }
+    setJobState("");
 
   }
 
@@ -112,7 +115,6 @@ const UploadResume = () => {
           <div className="flex flex-col items-center">
             <img
               src={previewURL}
-              alt="Preview"
               className="max-w-[6rem] max-h-[12rem] object-cover border rounded px-1"
             />
             <p className="mt-2 text-sm font-semibold text-gray-700">
@@ -127,7 +129,8 @@ const UploadResume = () => {
               alt="Upload"
               className="opacity-30 max-w-[4rem] max-h-[9rem] mb-2"
             />
-            <span className="text-gray-500">Drag & Drop your resume here</span>
+            <span className="text-gray-500">To upload/change your resume</span>
+            <span className="text-gray-500">Drag & Drop it here</span>
             <span className="text-gray-400">or click to upload</span>
           </>
         )}
@@ -136,7 +139,7 @@ const UploadResume = () => {
       <div className="flex justify-center mt-6">
         <button onClick={OnUpload} className="border p-2 rounded-sm hover:cursor-pointer hover:bg-gray-100 active:bg-gray-200">Find Jobs!</button>
       </div>
-
+      <div className="text-center mt-3 text-sm text-gray-400">{jobState}</div>
       <Results/>
     </div>
   );
