@@ -6,7 +6,7 @@ import { AllContext } from '../contexts/AllContext';
 
 const Login = () => {
 
-  const {token, setToken, navigate} = useContext(AllContext); 
+  const {token, setToken, navigate, setJobs} = useContext(AllContext); 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [currentState, setCurrentState] = useState('Login');
   const [username, setUsername] = useState('');
@@ -27,6 +27,7 @@ const Login = () => {
         
         if(response.data.success){
           setToken(response.data.token);
+          setJobs(null);
           localStorage.setItem('resumeJobSearchToken', response.data.token);
         }else{
           toast.error(response.data.message);
@@ -37,6 +38,7 @@ const Login = () => {
         
         if(response.data.success){
           setToken(response.data.token);
+          setJobs(null);
           localStorage.setItem('resumeJobSearchToken', response.data.token);
         }else{
           toast.error(response.data.message);
