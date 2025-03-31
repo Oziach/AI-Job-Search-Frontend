@@ -3,8 +3,6 @@ import * as pdfjsLib from "pdfjs-dist";
 import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import UploadFile from "../utils/onUpload";
 import { AllContext } from "../contexts/AllContext";
-import ResultBar from "./ResultBar";
-import job from "../../../ai-job-search-backend/models/Job";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { fetchJobs } from "../utils/fetchJobs";
