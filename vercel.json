@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "http://16.171.226.11"
+      }
+    ]
+  }
